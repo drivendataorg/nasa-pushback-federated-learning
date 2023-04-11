@@ -1,0 +1,19 @@
+# local package
+-e .
+
+cloudpathlib[s3]
+fastparquet
+flwr[simulation]
+jupyter
+loguru
+matplotlib
+nbautoexport
+nb-black
+numpy
+pandas
+pqdm
+pyarrow
+pydantic
+scikit-learn
+skops
+tqdm
