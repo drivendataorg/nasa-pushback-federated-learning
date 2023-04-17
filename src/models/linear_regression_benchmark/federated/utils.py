@@ -59,6 +59,7 @@ def set_initial_params(model: LinearRegression):
 
 
 def load_public_airport_features(index: pd.Index, airport: str):
+    """Loads the public features for a set of flights from one airport."""
     # initialize features with indices
     features = pd.DataFrame([], index=index)
 
@@ -89,35 +90,11 @@ def load_public_airport_features(index: pd.Index, airport: str):
 
     assert features.minutes_until_pushback.notnull().all()
 
-    # # get weather features
-    # logger.debug("Loading LAMP features")
-    # lamp = (
-    #     pd.read_csv(
-    #         data_directory / airport / f"{airport}_lamp.csv.bz2",
-    #         parse_dates=["timestamp", "forecast_timestamp"],
-    #     )
-    #     .sort_values(["timestamp", "forecast_timestamp"])
-    #     .drop_duplicates(subset=["forecast_timestamp"], keep="last")
-    #     .drop(columns=["timestamp"])
-    #     .set_index("forecast_timestamp")
-    # )
-    # features = (
-    #     features.reset_index()
-    #     .merge(
-    #         lamp,
-    #         how="left",
-    #         left_on=features.index.get_level_values("timestamp").floor("H"),
-    #         right_on="forecast_timestamp",
-    #         validate="m:1",
-    #     )
-    #     .drop(columns=["forecast_timestamp"])
-    #     .set_index(features.index.names)
-    # )
-
     return features
 
 
 def load_private_airline_airport_features(index: pd.Index, airline: str, airport: str):
+    """Loads the private features for a set of flights from one airline and one airport."""
     features = pd.DataFrame([], index=index)
 
     # get mfs features
