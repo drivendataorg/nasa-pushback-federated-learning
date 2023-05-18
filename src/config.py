@@ -2,6 +2,7 @@ from pathlib import Path
 
 data_directory = Path(__file__).parent.parent / "data"
 
+model_directory = Path(__file__).parent.parent / "models"
 
 AIRPORTS = [
     "KATL",
